@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "vibe-hex"
+version = "0.1.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+packages = [{include = "vibe_hex"}]
+
+[tool.poetry.dependencies]
+python = ">=3.11,<3.14"
+pyside6 = "^6.6.1"
+pillow = "^10.2.0"
+pygame = "^2.5.2"
+numpy = "^1.26.4"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+hex = "vibe_hex.main:main"
