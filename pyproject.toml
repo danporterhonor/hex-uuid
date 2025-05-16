@@ -1,21 +1,18 @@
 [tool.poetry]
-name = "vibe-hex"
+name = "hex-uuid-tool"
 version = "0.1.0"
-description = ""
+description = "A UUID format converter utility with GUI"
 authors = ["Your Name <you@example.com>"]
 readme = "README.md"
-packages = [{include = "vibe_hex"}]
+packages = [{include = "hex_uuid_tool"}]
 
 [tool.poetry.dependencies]
 python = ">=3.11,<3.14"
 pyside6 = "^6.6.1"
-pillow = "^10.2.0"
-pygame = "^2.5.2"
-numpy = "^1.26.4"
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
-hex = "vibe_hex.main:main"
+hex = "hex_uuid_tool.main:main"

@@ -1,26 +1,47 @@
 import sys
 import re
+import os
 from PySide6.QtWidgets import (QApplication, QMainWindow, QWidget, QVBoxLayout,
                              QLabel, QPushButton, QLineEdit, QHBoxLayout, QTextEdit)
 from PySide6.QtCore import Qt
-from PySide6.QtGui import QClipboard
+from PySide6.QtGui import QClipboard, QIcon, QPixmap
 
-class VibeHexApp(QMainWindow):
+class HexUuidApp(QMainWindow):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("UUID Format Converter")
         self.setGeometry(100, 100, 600, 400)
+        
+        # Set application icon
+        icon_path = os.path.join(os.path.dirname(__file__), 'icons', 'app_icon_256.png')
+        if os.path.exists(icon_path):
+            self.setWindowIcon(QIcon(icon_path))
 
         # Create central widget and layout
         central_widget = QWidget()
         self.setCentralWidget(central_widget)
         layout = QVBoxLayout(central_widget)
 
+        # Create input area with icon
+        input_container = QWidget()
+        input_layout = QHBoxLayout(input_container)
+        input_layout.setContentsMargins(0, 0, 0, 0)
+        
+        # Add icon on the left
+        icon_path = os.path.join(os.path.dirname(__file__), 'icons', 'app_icon_64.png')
+        if os.path.exists(icon_path):
+            icon_label = QLabel()
+            icon_label.setPixmap(QIcon(icon_path).pixmap(48, 48))  # Slightly smaller icon
+            icon_label.setAlignment(Qt.AlignCenter)
+            input_layout.addWidget(icon_label)
+
         # Create input field
         self.input_field = QTextEdit()
         self.input_field.setPlaceholderText("Paste UUIDs, URLs, or Python byte strings (one per line)")
         self.input_field.setMinimumHeight(60)
-        layout.addWidget(self.input_field)
+        input_layout.addWidget(self.input_field)
+        
+        layout.addWidget(input_container)
 
         # Create convert button
         convert_button = QPushButton("Convert")
@@ -180,7 +201,15 @@ class VibeHexApp(QMainWindow):
 
 def main():
     app = QApplication(sys.argv)
-    window = VibeHexApp()
+    app.setApplicationName("UUID Format Converter")
+    
+    # Set application icon
+    icon_path = os.path.join(os.path.dirname(__file__), 'icons', 'app_icon_256.png')
+    if os.path.exists(icon_path):
+        app_icon = QIcon(icon_path)
+        app.setWindowIcon(app_icon)
+    
+    window = HexUuidApp()
     window.show()
     sys.exit(app.exec())
 
